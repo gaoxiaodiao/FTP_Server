@@ -19,6 +19,12 @@ authorizer.add_anonymous("/usr/gxd");
 #初始化ftp句柄
 handler = FTPHandler
 handler.authorizer = authorizer
+
+#修正服务器返回ip与端口
+handler.masquerade_address = "115.29.44.103"
+#被动端口范围设置
+handler.passive_ports = range(2048,4096)
+
 #监听ip、端口
 server = FTPServer(("0.0.0.0",21),handler)
 #启动服务
